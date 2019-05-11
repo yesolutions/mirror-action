@@ -1,9 +1,9 @@
 FROM alpine/git:latest
 
-LABEL "com.github.actions.name"="Mirror Action"
+LABEL "com.github.actions.name"="Mirror Repository"
 LABEL "com.github.actions.description"="Mirror git repositories"
-LABEL "com.github.actions.icon"="code"
-LABEL "com.github.actions.color"="white"
+LABEL "com.github.actions.icon"="git-commit"
+LABEL "com.github.actions.color"="green"
 
 LABEL "repository"="https://github.com/spyoungtech/mirror-action"
 LABEL "homepage"="https://github.com/spyoungtech/mirror-action"

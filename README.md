@@ -3,7 +3,9 @@ A GitHub Action for mirroring your repository to a different remote repository
 
 This project is [mirrored on GitLab](https://gitlab.com/spyoungtech/mirror-action)
 
-## Example workflow
+## Example workflows
+
+### Mirror a repository with username/password over HTTPS
 
 ```workflow
 workflow "Mirror Workflow" {
@@ -20,3 +22,10 @@ action "Mirror Action" {
   }
 }
 ```
+
+Be sure to set the `GIT_PASSWORD` secret in the Actions editor.
+
+### Mirror a repository using SSH
+
+*Coming soon*
+
