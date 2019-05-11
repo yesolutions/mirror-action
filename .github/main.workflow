@@ -5,4 +5,5 @@ workflow "New workflow" {
 
 action "Mirror Action" {
   uses = "./"
+  secrets = ["GIT_USERNAME", "GIT_PASSWORD"]
 }
