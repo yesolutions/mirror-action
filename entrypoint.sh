@@ -1,7 +1,7 @@
 #!/bin/sh -x
 set -eu
 
-branch=$(git symbolic-ref --short HEAD)
+branch=master
 sh -c "git config --global credential.username $GIT_USERNAME"
 sh -c "git config --global core.askPass /cred-helper.sh"
 sh -c "git config --global credential.helper cache"
