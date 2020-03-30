@@ -1,7 +1,6 @@
 #!/bin/sh -x
 set -eu
 
-sh -c "git checkout $GITHUB_REF"
 branch=$(git symbolic-ref --short HEAD)
 sh -c "git config --global credential.username $GIT_USERNAME"
 sh -c "git config --global core.askPass /cred-helper.sh"
