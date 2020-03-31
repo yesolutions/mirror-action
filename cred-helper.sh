@@ -1,2 +1,2 @@
-#!/bin/sh -x
+#!/bin/sh
 exec echo "$GIT_PASSWORD"
