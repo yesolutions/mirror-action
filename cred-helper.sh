@@ -1,2 +1,2 @@
 #!/bin/sh -x
-exec echo "$USER_PASS"
+exec echo "$GIT_PASSWORD"
