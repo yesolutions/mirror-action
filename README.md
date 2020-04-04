@@ -25,6 +25,23 @@ action "Mirror Action" {
 }
 ```
 
+YAML version 
+
+```
+on: [push]
+  ...
+      steps:
+        - uses: spyoungtech/mirror-action@master
+          env:
+            GIT_USERNAME: spyoungtech
+            GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+            SRC_REPO: https://github.com/${{ github.repository }}
+          with:
+            args: 'https://gitlab.com/spyoungtech/mirror-action.git'
+```
+
+
+
 Be sure to set the `GIT_PASSWORD` secret in the Actions editor.
 
 ### Mirror a repository using SSH

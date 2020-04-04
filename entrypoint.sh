@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 set -eu
 sh -c "git config --global credential.username $GIT_USERNAME"
 sh -c "git config --global core.askPass /cred-helper.sh"
