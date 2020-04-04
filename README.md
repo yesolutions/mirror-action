@@ -27,7 +27,7 @@ action "Mirror Action" {
 
 YAML version 
 
-```
+```yaml
 on: [push]
   ...
       steps:
