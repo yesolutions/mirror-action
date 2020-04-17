@@ -1,7 +1,7 @@
 FROM alpine/git:latest
 
 LABEL "com.github.actions.name"="Mirror Repository"
-LABEL "com.github.actions.description"="Automate mirroring of git commits to another repository"
+LABEL "com.github.actions.description"="Automate mirroring of git commits to another remote repository, like GitLab or Bitbucket"
 LABEL "com.github.actions.icon"="git-commit"
 LABEL "com.github.actions.color"="green"
 
