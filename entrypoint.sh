@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-if [[ "${DEBUG}" = "true" ]]; then
+if [[ "${DEBUG}" -eq "true" ]]; then
     set -x
 fi
 
