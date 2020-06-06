@@ -19,7 +19,7 @@ if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
         echo "FATAL: SRC_REPO env variable not defined"
         exit 1
     fi
-    git init
+    git init > /dev/null
     git remote add origin "${SRC_REPO}"
 fi
 
@@ -35,7 +35,10 @@ else
     git config --global credential.helper cache
 fi
 
-git fetch origin
+git fetch origin > /dev/null
 
 git remote add mirror "${REMOTE}"
-eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
+eval git push ${GIT_PUSH_ARGS} mirror
+if [[ ${INPUT_PUSH_TAGS} -eq "true" ]]; then
+    git push --tags mirror
+fi
