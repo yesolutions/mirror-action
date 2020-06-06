@@ -17,13 +17,13 @@ if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
     echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
     echo " - uses: actions/checkout@v2" > /dev/stderr
     if [[ "${SRC_REPO}" -eq "" ]]; then
-        echo "FATAL: SRC_REPO env variable not defined"
-        exit 1
-    fi
+        echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
+        SRC_REPO="https://github.com/${GITHUB_REPOSITORY}" > /dev/stderr
+        echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
+     fi
     git init > /dev/null
     git remote add origin "${SRC_REPO}"
     git fetch --all > /dev/null 2>&1
-    git checkout ${GITHUB_REF}
 fi
 
 git config --global credential.username "${GIT_USERNAME}"
@@ -43,5 +43,10 @@ git remote add mirror "${REMOTE}"
 if [[ ${INPUT_PUSH_ALL_REFS} -ne "false" ]]; then
     eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
 else
-    eval git push -u ${GIT_PUSH_ARGS} mirror ${GITHUB_REF}
+    if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
+        echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch"
+        exit 1
+    else
+        eval git push -u ${GIT_PUSH_ARGS} mirror
+    fi
 fi

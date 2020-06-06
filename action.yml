@@ -19,7 +19,7 @@ inputs:
     required: false
   PUSH_ALL_REFS:
     description: "Push all refs instead of just the current branch"
-    default: "false"
+    default: "true"
     required: false
 
   GIT_PUSH_ARGS:
