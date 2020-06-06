@@ -24,7 +24,7 @@ inputs:
 
   GIT_PUSH_ARGS:
     description: "The arugments to use when pushing the repository"
-    default: '--force'
+    default: '--tags --force --prune'
     required: false
   DEBUG:
     description: 'set to "true" to enable debug mode'
