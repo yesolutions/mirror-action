@@ -11,7 +11,6 @@ inputs:
   GIT_USERNAME:
     description: "Username for remote repository"
     required: false
-    default: "git"
   GIT_PASSWORD:
     description: "The git https password or token for the remote repository"
     required: false
