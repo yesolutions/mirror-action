@@ -43,10 +43,10 @@ fi
 
 
 git remote add mirror "${REMOTE}"
-if [[ ${INPUT_PUSH_ALL_REFS} -eq "true" ]]; then
+if [[ ${INPUT_PUSH_ALL_REFS} != "false" ]]; then
     eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
 else
-    if [[ "${HAS_CHECKED_OUT}" -ne "true" ]]; then
+    if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
         echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch" > /dev/stderr
         exit 1
     else
