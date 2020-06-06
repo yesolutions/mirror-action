@@ -18,7 +18,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-#    - uses: actions/checkout@v1
+    - uses: actions/checkout@v1
     - name: mirror-repository
       uses: spyoungtech/mirror-action@spyoungtech-patch-1
       with:
@@ -26,4 +26,4 @@ jobs:
         DEBUG: "true"
         GIT_USERNAME: spyoungtech
         GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
-        PUSH_ALL_REFS: false
+        PUSH_ALL_REFS: "false"
