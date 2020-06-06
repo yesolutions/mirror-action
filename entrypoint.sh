@@ -8,7 +8,7 @@ GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY}
 SRC_REPO=${INPUT_SRC_REPO:-${SRC_REPO}}
 GIT_PUSH_ARGS=${INPUT_ADDITIONAL_PUSH_ARGS:-"--mirror"}
 
-HAS_CHECKED_OUT="$(git status || echo false)"
+HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree || echo false)"
 
 
 if [[ HAS_CHECKED_OUT -eq "false" ]]; then
