@@ -20,7 +20,7 @@ jobs:
     steps:
 
     - name: mirror-repository
-      uses: spyoungtech/mirror-action@v0.2.2
+      uses: spyoungtech/mirror-action@spyoungtech-patch-1
       with:
         args: https://gitlab.com/spyoungtech/mirror-action.git
       env:

@@ -6,7 +6,6 @@ GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
 GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY}
 SRC_REPO=${INPUT_SRC_REPO:-${SRC_REPO}}
-FORCE_PUSH=${INPUT_FORCE_PUSH:-"--force"}
 GIT_PUSH_ARGS=${INPUT_ADDITIONAL_PUSH_ARGS:-"--mirror"}
 
 HAS_CHECKED_OUT=$(git status || echo "false")
@@ -39,4 +38,4 @@ fi
 git fetch origin
 
 git remote add mirror "${REMOTE}"
-git push ${GIT_PUSH_ARGS} ${FORCE_PUSH} mirror
+git push ${GIT_PUSH_ARGS} ${FORCE_PUSH} mirror "refs/remotes/origin/*:refs/heads/*"
