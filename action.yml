@@ -26,6 +26,11 @@ inputs:
     description: "The arugments to use when pushing the repository"
     default: '--force'
     required: false
+  DEBUG:
+    description: 'set to "true" to enable debug mode'
+    default: "false"
+    required: false
+
 
 runs:
   using: 'docker'
