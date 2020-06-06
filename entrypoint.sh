@@ -37,4 +37,4 @@ fi
 git fetch origin
 
 git remote add mirror "${REMOTE}"
-git push '"'${GIT_PUSH_ARGS}'"' mirror "refs/remotes/origin/*:refs/heads/*"
+eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
