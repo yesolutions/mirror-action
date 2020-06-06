@@ -3,3 +3,35 @@ description: Automate mirroring of git commits to another remote repository, lik
 branding:
   icon: git-commit
   color: green
+
+inputs:
+  REMOTE:
+    description: "The remote repository e.g. https://github.com/octocat/foo.git or git@github.com:octocat/foo.git"
+    required: false
+  GIT_USERNAME:
+    description: "Username for remote repository"
+    required: false
+  GIT_PASSWORD:
+    description: "The git https password or token for the remote repository"
+    required: false
+  GIT_SSH_PRIVATE_KEY:
+    description: "The ssh private key for writing to the remote repository, if using ssh"
+    required: false
+  PUSH_ALL_REFS:
+    description: "Push all refs instead of just the current branch"
+    default: "true"
+    required: false
+
+  GIT_PUSH_ARGS:
+    description: "The arugments to use when pushing the repository"
+    default: '--tags --force --prune'
+    required: false
+  DEBUG:
+    description: 'set to "true" to enable debug mode'
+    default: "false"
+    required: false
+
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

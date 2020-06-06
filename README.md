@@ -9,42 +9,41 @@ This project is [mirrored on GitLab](https://gitlab.com/spyoungtech/mirror-actio
 
 For example, this project uses the following workflow to mirror from GitHub to GitLab
 
-```workflow
-workflow "Mirror Workflow" {
-  on = "push"
-  resolves = ["Mirror Action"]
-}
-
-action "Mirror Action" {
-  uses = "spyoungtech/mirror-action@master"
-  secrets = ["GIT_PASSWORD"]
-  args = "https://gitlab.com/spyoungtech/mirror-action.git"
-  env = {
-    GIT_USERNAME = "spyoungtech"
-  }
-}
-```
-
-YAML version 
-
 ```yaml
 on: [push]
   ...
       steps:
+        - uses: actions/checkout@v1
         - uses: spyoungtech/mirror-action@master
-          env:
+          with:
+            REMOTE: 'https://gitlab.com/spyoungtech/mirror-action.git'
             GIT_USERNAME: spyoungtech
             GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
-            SRC_REPO: https://github.com/${{ github.repository }}
-          with:
-            args: 'https://gitlab.com/spyoungtech/mirror-action.git'
 ```
 
+Be sure to set the `GIT_PASSWORD` secret in your repo secrets settings.
 
 
-Be sure to set the `GIT_PASSWORD` secret in the Actions editor.
+**NOTE:** by default, all branches are pushed. If you want to avoid 
+this behavior, set `PUSH_ALL_REFS: "false"`
+
+You can further customize the push behavior with the `GIT_PUSH_ARGS` parameter. 
+By default, this is set to `--tags --force --prune`
+
+If something goes wrong, you can debug by setting `DEBUG: "true"`
 
 ### Mirror a repository using SSH
 
-*Coming soon*
+Pretty much the same, but use `GIT_SSH_PRIVATE_KEY`
 
+```yaml
+      steps:
+        - uses: actions/checkout@v1
+        - uses: spyoungtech/mirror-action@master
+          with:
+            REMOTE: 'https://gitlab.com/spyoungtech/mirror-action.git'
+            GIT_USERNAME: spyoungtech
+            GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
+
+```
+Be sure you set the `GET_SSH_KEY` in your repo secrets settings.
