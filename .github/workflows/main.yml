@@ -22,10 +22,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: mirror-repository
-      uses: spyoungtech/mirror-action@v0.2.2
+      uses: spyoungtech/mirror-action@spyoungtech-patch-1
       with:
         args: https://gitlab.com/spyoungtech/mirror-action.git
       env:
         GIT_USERNAME: spyoungtech
         GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
-        SRC_REPO: https://github.com/$GITHUB_REPOSITORY
