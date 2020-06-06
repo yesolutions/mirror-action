@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eu
+set -e
 
 
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:"git"}}
