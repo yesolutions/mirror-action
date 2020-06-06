@@ -18,7 +18,7 @@ if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
     echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
     echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
-    echo " - uses: actions/checkout@v2" > /dev/stderr
+    echo " - uses: actions/checkout@v1" > /dev/stderr
     if [[ "${SRC_REPO}" -eq "" ]]; then
         echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
         SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
