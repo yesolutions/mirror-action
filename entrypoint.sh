@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 set -e
 
 
@@ -37,4 +37,4 @@ fi
 git fetch origin
 
 git remote add mirror "${REMOTE}"
-git push ${GIT_PUSH_ARGS} ${FORCE_PUSH} mirror "refs/remotes/origin/*:refs/heads/*"
+git push "${GIT_PUSH_ARGS}" mirror "refs/remotes/origin/*:refs/heads/*"
