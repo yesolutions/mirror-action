@@ -17,13 +17,14 @@ inputs:
   GIT_SSH_PRIVATE_KEY:
     description: "The ssh private key for writing to the remote repository, if using ssh"
     required: false
+  PUSH_ALL_REFS:
+    description: "Push all refs instead of just the current branch"
+    default: "false"
+    required: false
+
   GIT_PUSH_ARGS:
     description: "The arugments to use when pushing the repository"
-    default: '--all --force --prune'
-    required: false
-  PUSH_TAGS:
-    description: "If true, will additionally run git push --tags after first push command"
-    default: "true"
+    default: '--force'
     required: false
 
 runs:

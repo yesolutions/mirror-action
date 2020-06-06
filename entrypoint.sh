@@ -12,6 +12,7 @@ HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || echo false
 
 if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
     echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
+    echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
     echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
     echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
     echo " - uses: actions/checkout@v2" > /dev/stderr
@@ -21,6 +22,9 @@ if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
     fi
     git init > /dev/null
     git remote add origin "${SRC_REPO}"
+    git fetch --all > /dev/null 2>&1
+    git pull --all
+    git checkout -b ${GITHUB_REF}
 fi
 
 git config --global credential.username "${GIT_USERNAME}"
@@ -35,10 +39,10 @@ else
     git config --global credential.helper cache
 fi
 
-git fetch origin > /dev/null
 
 git remote add mirror "${REMOTE}"
-eval git push ${GIT_PUSH_ARGS} mirror
-if [[ ${INPUT_PUSH_TAGS} -eq "true" ]]; then
-    git push --tags mirror
+if [[ ${INPUT_PUSH_ALL_REFS} -ne "false" ]]; then
+    eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
+else
+    eval git push -u ${GIT_PUSH_ARGS} mirror ${GITHUB_REF}
 fi
