@@ -23,8 +23,7 @@ if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
     git init > /dev/null
     git remote add origin "${SRC_REPO}"
     git fetch --all > /dev/null 2>&1
-    git pull --all
-    git checkout -b ${GITHUB_REF}
+    git checkout ${GITHUB_REF}
 fi
 
 git config --global credential.username "${GIT_USERNAME}"
