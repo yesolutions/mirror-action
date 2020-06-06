@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-if [[ "${DEBUG}" -eq "true" ]]; then
+if [[ "${DEBUG}" = "true" ]]; then
     set -x
 fi
 
@@ -13,13 +13,13 @@ GIT_PUSH_ARGS=${INPUT_ADDITIONAL_PUSH_ARGS:-"--tags --force --prune"}
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || echo false)"
 
 
-if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
+if [[ "${HAS_CHECKED_OUT}" = "false" ]]; then
     echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
     echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
     echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
     echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
     echo " - uses: actions/checkout@v2" > /dev/stderr
-    if [[ "${SRC_REPO}" -eq "" ]]; then
+    if [[ "${SRC_REPO}" = "" ]]; then
         echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
         SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
         echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
@@ -43,10 +43,10 @@ fi
 
 
 git remote add mirror "${REMOTE}"
-if [[ ${INPUT_PUSH_ALL_REFS} -eq "true" ]]; then
+if [[ ${INPUT_PUSH_ALL_REFS} = "true" ]]; then
     eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
 else
-    if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
+    if [[ "${HAS_CHECKED_OUT}" = "false" ]]; then
         echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch" > /dev/stderr
         exit 1
     else
