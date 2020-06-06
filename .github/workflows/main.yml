@@ -26,4 +26,4 @@ jobs:
       env:
         GIT_USERNAME: spyoungtech
         GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
-        SRC_REPO: https://github.com/$GITHUB_REPOSITORY.git
+        SRC_REPO: https://github.com/spyoungtech/mirror-action.git
