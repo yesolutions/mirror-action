@@ -21,7 +21,7 @@ if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
     echo " - uses: actions/checkout@v2" > /dev/stderr
     if [[ "${SRC_REPO}" -eq "" ]]; then
         echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
-        SRC_REPO="https://github.com/${GITHUB_REPOSITORY}" > /dev/stderr
+        SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
         echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
      fi
     git init > /dev/null
@@ -43,11 +43,11 @@ fi
 
 
 git remote add mirror "${REMOTE}"
-if [[ ${INPUT_PUSH_ALL_REFS} -ne "false" ]]; then
+if [[ ${INPUT_PUSH_ALL_REFS} -eq "true" ]]; then
     eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
 else
     if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
-        echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch"
+        echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch" > /dev/stderr
         exit 1
     else
         eval git push -u ${GIT_PUSH_ARGS} mirror
