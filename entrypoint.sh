@@ -20,7 +20,7 @@ if [[ "${HAS_CHECKED_OUT}" -eq "false" ]]; then
         exit 1
     fi
     git init
-    git add origin "${SRC_REPO}"
+    git remote add origin "${SRC_REPO}"
 fi
 
 git config --global credential.username "${GIT_USERNAME}"
