@@ -46,4 +46,4 @@ Pretty much the same, but use `GIT_SSH_PRIVATE_KEY`
             GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
 
 ```
-Be sure you set the `GET_SSH_KEY` in your repo secrets settings.
+Be sure you set the `GIT_SSH_KEY` in your repo secrets settings.
