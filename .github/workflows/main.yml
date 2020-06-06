@@ -23,3 +23,6 @@ jobs:
 
     - name: mirror-repository
       uses: spyoungtech/mirror-action@v0.2.2
+      env:
+        GIT_USERNAME: spyoungtech
+        GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
