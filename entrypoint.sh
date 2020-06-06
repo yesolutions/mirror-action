@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+if [[ "${DEBUG}" -eq "true" ]]; then
+    set -x
+fi
 
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
