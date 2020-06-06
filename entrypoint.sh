@@ -13,7 +13,7 @@ GIT_PUSH_ARGS=${INPUT_ADDITIONAL_PUSH_ARGS:-"--tags --force --prune"}
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
 
 
-if [[ ${HAS_CHECKED_OUT} -ne "true" ]]; then
+if [[ "${HAS_CHECKED_OUT}" -ne "true" ]]; then
     echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
     echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
     echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
