@@ -8,7 +8,7 @@ fi
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
 GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY}
-GIT_PUSH_ARGS=${INPUT_ADDITIONAL_PUSH_ARGS:-"--tags --force --prune"}
+GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
 
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
 
