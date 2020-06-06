@@ -11,7 +11,7 @@ GIT_PUSH_ARGS=${INPUT_ADDITIONAL_PUSH_ARGS:-"--mirror"}
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree || echo false)"
 
 
-if [[ HAS_CHECKED_OUT -eq "false" ]]; then
+if [[ ${HAS_CHECKED_OUT} -eq "false" ]]; then
     echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
     echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
     echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
@@ -27,7 +27,7 @@ fi
 git config --global credential.username "${GIT_USERNAME}"
 
 
-if [[ GIT_SSH_PRIVATE_KEY -ne "" ]]; then
+if [[ ${GIT_SSH_PRIVATE_KEY} -ne "" ]]; then
     mkdir ~/.ssh
     echo "${INPUT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa
