@@ -34,7 +34,7 @@ git config --global credential.username "${GIT_USERNAME}"
 
 if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
     mkdir ~/.ssh
-    echo "${INPUT_GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+    echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa
 else
     git config --global core.askPass /cred-helper.sh
