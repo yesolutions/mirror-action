@@ -7,6 +7,7 @@ fi
 
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
+SSH_HOST=${INPUT_SSH_HOST:-${REMOTE}}
 GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY:-""}
 GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
 
@@ -36,7 +37,7 @@ if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
     mkdir ~/.ssh
     echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa
-    ssh-keyscan -H $ssh_port "$ssh_host" >> ~/.ssh/known_hosts
+    ssh-keyscan "${SSH_HOST}" >> ~/.ssh/known_hosts
 else
     git config --global core.askPass /cred-helper.sh
     git config --global credential.helper cache
