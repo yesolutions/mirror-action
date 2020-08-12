@@ -32,7 +32,7 @@ fi
 git config --global credential.username "${GIT_USERNAME}"
 
 
-if [[ "${GIT_SSH_PRIVATE_KEY}" !== "" ]]; then
+if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
     mkdir ~/.ssh
     echo "${INPUT_GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa
