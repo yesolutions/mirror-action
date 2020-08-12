@@ -7,7 +7,7 @@ fi
 
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
-GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY}
+GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY:-""}
 GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
 
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
@@ -32,10 +32,11 @@ fi
 git config --global credential.username "${GIT_USERNAME}"
 
 
-if [[ "${GIT_SSH_PRIVATE_KEY}" -ne "" ]]; then
+if [[ "${GIT_SSH_PRIVATE_KEY}" !== "" ]]; then
     mkdir ~/.ssh
-    echo "${INPUT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+    echo "${INPUT_GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa
+    git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa"
 else
     git config --global core.askPass /cred-helper.sh
     git config --global credential.helper cache
