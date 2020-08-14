@@ -37,7 +37,7 @@ if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
     mkdir ~/.ssh
     echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa
-    ssh-keyscan "${SSH_HOST}" >> ~/.ssh/known_hosts
+    git config --global core.sshCommand "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 else
     git config --global core.askPass /cred-helper.sh
     git config --global credential.helper cache
