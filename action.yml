@@ -17,11 +17,20 @@ inputs:
   GIT_SSH_PRIVATE_KEY:
     description: "The ssh private key for writing to the remote repository, if using ssh"
     required: false
+  GIT_SSH_PUBLIC_KEY:
+    description: "The ssh public key for writing to the remote repository, if using ssh"
+    required: false
+  GIT_SSH_KNOWN_HOSTS:
+    description: "The contents of a SSH known_hosts file for host key verification"
+    required: false
+  GIT_SSH_NO_VERIFY_HOST:
+    description: "if true, skips host key verification. Mutually exclusive with GIT_SSH_KNOWN_HOSTS"
+    default: "false"
+    required: false
   PUSH_ALL_REFS:
     description: "Push all refs instead of just the current branch"
     default: "true"
     required: false
-
   GIT_PUSH_ARGS:
     description: "The arugments to use when pushing the repository"
     default: '--tags --force --prune'

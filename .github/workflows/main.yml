@@ -20,9 +20,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: mirror-repository
-      uses: spyoungtech/mirror-action@spyoungtech-patch-1
+      uses: spyoungtech/mirror-action@master
       with:
-        REMOTE: https://gitlab.com/spyoungtech/mirror-action.git
-        GIT_USERNAME: spyoungtech
-        GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+        REMOTE: git@gitlab.com:spyoungtech/mirror-action.git
+        GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
+        GIT_SSH_PUBLIC_KEY: ${{ secrets.GIT_SSH_PUBLIC_KEY }}
+        GIT_SSH_NO_VERIFY_HOST: "true"
         DEBUG: "true"
