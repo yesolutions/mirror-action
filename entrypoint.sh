@@ -33,7 +33,7 @@ fi
 git config --global credential.username "${GIT_USERNAME}"
 
 
-if [[ "${GIT_SSH_PRIVATE_KEY}" -ne "" ]]; then
+if [[ -z ${GIT_SSH_PRIVATE_KEY+x} ]]; then
     mkdir ~/.ssh
     echo -e "${INPUT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     echo -e "${INPUT_SSH_PUBLIC_KEY}" > ~/.ssh/id_rsa.pub
