@@ -40,6 +40,12 @@ if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
     printf "%s" "${GIT_SSH_PUBLIC_KEY}" > ~/.ssh/id_rsa.pub
     chmod 600 ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa.pub
+    if [[ "${DEBUG}" -eq "true" ]]; then
+        stat ~/.ssh/id_rsa
+        stat ~/.ssh/id_rsa.pub
+        wc ~/.ssh/id_rsa
+        wc ~/.ssh/id_rsa.pub
+    fi
 else
     git config --global core.askPass /cred-helper.sh
     git config --global credential.helper cache
