@@ -17,6 +17,9 @@ inputs:
   GIT_SSH_PRIVATE_KEY:
     description: "The ssh private key for writing to the remote repository, if using ssh"
     required: false
+  GIT_SSH_PUBLIC_KEY:
+    description: "The ssh public key for writing to the remote repository, if using ssh"
+    required: false
   PUSH_ALL_REFS:
     description: "Push all refs instead of just the current branch"
     default: "true"
