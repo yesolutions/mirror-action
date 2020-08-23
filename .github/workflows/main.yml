@@ -25,5 +25,5 @@ jobs:
         REMOTE: git@gitlab.com:spyoungtech/mirror-action.git
         GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
         GIT_SSH_PUBLIC_KEY: ${{ secrets.GIT_SSH_PUBLIC_KEY }}
-        GIT_SSH_NO_VERIFY: "true"
+        GIT_SSH_NO_VERIFY_HOST: "true"
         DEBUG: "true"
