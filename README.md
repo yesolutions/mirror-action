@@ -58,7 +58,7 @@ you can do so by using the `GIT_SSH_NO_VERIFY_HOST` input option. e.g.
         - uses: actions/checkout@v1
         - uses: spyoungtech/mirror-action@master
           with:
-            REMOTE: 'ssh://git@gitlab.com/spyoungtech/mirror-action.git'
+            REMOTE: git@gitlab.com/spyoungtech/mirror-action.git
             GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
             GIT_SSH_PUBLIC_KEY: ${{ secrets.GIT_SSH_PUBLIC_KEY }}
             GIT_SSH_NO_VERIFY_HOST: "true"
