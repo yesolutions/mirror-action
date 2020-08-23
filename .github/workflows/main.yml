@@ -22,7 +22,8 @@ jobs:
     - name: mirror-repository
       uses: spyoungtech/mirror-action@spyoungtech-patch-1
       with:
-        REMOTE: https://gitlab.com/spyoungtech/mirror-action.git
-        GIT_USERNAME: spyoungtech
-        GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+        REMOTE: git@gitlab.com:spyoungtech/mirror-action.git
+        GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
         DEBUG: "true"
+      env:
+        GIT_SSH_COMMAND: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
