@@ -34,16 +34,34 @@ If something goes wrong, you can debug by setting `DEBUG: "true"`
 
 ### Mirror a repository using SSH
 
-Pretty much the same, but use `GIT_SSH_PRIVATE_KEY`
+Pretty much the same, but using `GIT_SSH_PRIVATE_KEY`, `GIT_SSH_PUBLIC_KEY`, and `GIT_SSH_KNOWN_HOSTS`
 
 ```yaml
       steps:
         - uses: actions/checkout@v1
         - uses: spyoungtech/mirror-action@master
           with:
-            REMOTE: 'https://gitlab.com/spyoungtech/mirror-action.git'
-            GIT_USERNAME: spyoungtech
-            GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
+            REMOTE: 'ssh://git@gitlab.com/spyoungtech/mirror-action.git'
+            GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
+            GIT_SSH_PUBLIC_KEY: ${{ secrets.GIT_SSH_PUBLIC_KEY }}
+            GIT_SSH_KNOWN_HOSTS: ${{ secrets.GIT_SSH_KNOWN_HOSTS }}
 
 ```
-Be sure you set the `GET_SSH_KEY` in your repo secrets settings.
+
+Be sure you set the secrets in your repo secrets settings!
+
+**NOTE:** if you prefer to skip hosts verification instead of providing a known_hosts file, 
+you can do so by using the `GIT_SSH_NO_VERIFY_HOST` input option. e.g.
+
+```yaml
+      steps:
+        - uses: actions/checkout@v1
+        - uses: spyoungtech/mirror-action@master
+          with:
+            REMOTE: 'ssh://git@gitlab.com/spyoungtech/mirror-action.git'
+            GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
+            GIT_SSH_PUBLIC_KEY: ${{ secrets.GIT_SSH_PUBLIC_KEY }}
+            GIT_SSH_NO_VERIFY_HOST: "true"
+```
+
+WARNING: this setting is a compromise in security. Using known hosts is recommended.
