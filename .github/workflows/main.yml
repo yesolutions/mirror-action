@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: mirror-repository
-      uses: spyoungtech/mirror-action@c7874066bd89aa9a85360551088d6a6bff544282
+      uses: spyoungtech/mirror-action@fc59bfd84e44c61fe7ad07478c6c2aa1596d12af
       with:
         REMOTE: git@gitlab.com:spyoungtech/mirror-action.git
         GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
