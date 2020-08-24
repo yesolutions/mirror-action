@@ -14,9 +14,6 @@ inputs:
   GIT_PASSWORD:
     description: "The git https password or token for the remote repository"
     required: false
-  GIT_SSH_PRIVATE_KEY:
-    description: "The ssh private key for writing to the remote repository, if using ssh"
-    required: false
   GIT_SSH_PUBLIC_KEY:
     description: "The ssh public key for writing to the remote repository, if using ssh"
     required: false
