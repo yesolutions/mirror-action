@@ -38,9 +38,7 @@ if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
     mkdir ~/.ssh
     chmod 700 ~/.ssh
     echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
-    echo "${GIT_SSH_PUBLIC_KEY}" > ~/.ssh/id_rsa.pub
     chmod 600 ~/.ssh/id_rsa
-    chmod 600 ~/.ssh/id_rsa.pub
     if [[ "${GIT_SSH_KNOWN_HOSTS}" != "" ]]; then
       echo "${GIT_SSH_KNOWN_HOSTS}" > ~/.ssh/known_hosts
       git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes -o UserKnownHostsFile=~/.ssh/known_hosts"
