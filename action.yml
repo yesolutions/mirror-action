@@ -18,7 +18,7 @@ inputs:
     description: "The ssh private key for writing to the remote repository, if using ssh"
     required: false
   GIT_SSH_PUBLIC_KEY:
-    description: "The ssh public key for writing to the remote repository, if using ssh"
+    description: "The ssh public key for writing to the remote repository. Normally, not required at all"
     required: false
   GIT_SSH_KNOWN_HOSTS:
     description: "The contents of a SSH known_hosts file for host key verification"
