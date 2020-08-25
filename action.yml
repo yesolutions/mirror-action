@@ -1,5 +1,5 @@
 name: mirror-repository
-description: Automate mirroring of git commits to another remote repository, like GitLab or Bitbucket
+description: Automate mirroring of git commits to or from a remote repository, like GitLab, Bitbucket, or another GitHub repository
 branding:
   icon: git-commit
   color: green
