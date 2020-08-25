@@ -36,7 +36,7 @@ If something goes wrong, you can debug by setting `DEBUG: "true"`
 
 Requires version 0.4.0+
 
-Pretty much the same, but using `GIT_SSH_PRIVATE_KEY`, `GIT_SSH_PUBLIC_KEY`, and `GIT_SSH_KNOWN_HOSTS`
+Pretty much the same, but using `GIT_SSH_PRIVATE_KEY` and `GIT_SSH_KNOWN_HOSTS`
 
 ```yaml
       steps:
@@ -48,6 +48,8 @@ Pretty much the same, but using `GIT_SSH_PRIVATE_KEY`, `GIT_SSH_PUBLIC_KEY`, and
             GIT_SSH_KNOWN_HOSTS: ${{ secrets.GIT_SSH_KNOWN_HOSTS }}
 
 ```
+
+`GIT_SSH_KNOWN_HOSTS` is expected to be the contents of a `known_hosts` file.
 
 Be sure you set the secrets in your repo secrets settings!
 
