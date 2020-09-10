@@ -6,9 +6,12 @@ if [[ "${DEBUG}" -eq "true" ]]; then
 fi
 
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
-REMOTE=${INPUT_REMOTE:-"$*"}
 GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY}
 GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
+REMOTE=${INPUT_REMOTE:-"$*"}
+SOURCE_BRANCH=${INPUT_SOURCE_BRANCH:-"*"}
+REMOTE_BRANCH=${INPUT_REMOTE_BRANCH:-"${SOURCE_BRANCH}"}
+
 
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
 
@@ -33,7 +36,7 @@ git config --global credential.username "${GIT_USERNAME}"
 
 
 if [[ "${GIT_SSH_PRIVATE_KEY}" -ne "" ]]; then
-    mkdir ~/.ssh
+    mkdir -p ~/.ssh
     echo "${INPUT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa
 else
@@ -43,13 +46,4 @@ fi
 
 
 git remote add mirror "${REMOTE}"
-if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
-    eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
-else
-    if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
-        echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch" > /dev/stderr
-        exit 1
-    else
-        eval git push -u ${GIT_PUSH_ARGS} mirror
-    fi
-fi
+eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/${SOURCE_BRANCH}:refs/heads/{$REMOTE_BRANCH}\""
