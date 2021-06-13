@@ -63,6 +63,11 @@ fi
 
 if [ "$(git remote | grep mirror | wc -l)" -eq "0" ]; then
     git remote add mirror "${REMOTE}"
+else
+    if [ $(git remote -v | grep origin | grep push | awk '{print $2}') -ne "${REMOTE}" ]; then
+        git remote rm mirror
+        git remote add mirror "${REMOTE}"
+    fi
 fi
 
 if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
