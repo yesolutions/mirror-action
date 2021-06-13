@@ -64,7 +64,7 @@ fi
 if [ "$(git remote | grep mirror | wc -l)" -eq "0" ]; then
     git remote add mirror "${REMOTE}"
 else
-    if [ "${REMOTE}" -ne "$(git remote -v | grep mirror | grep push | awk '{print $2}')" ]; then
+    if [ "${REMOTE}" != "$(git remote -v | grep mirror | grep push | awk '{print $2}')" ]; then
         git remote rm mirror
         git remote add mirror "${REMOTE}"
     fi
