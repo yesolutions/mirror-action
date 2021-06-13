@@ -61,8 +61,10 @@ else
     git config --global credential.helper cache
 fi
 
+if [ "$(git remote | grep mirror | wc -l)" -eq "0" ]; then
+    git remote add mirror "${REMOTE}"
+fi
 
-git remote add mirror "${REMOTE}"
 if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
     eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
 else
