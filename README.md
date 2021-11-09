@@ -24,10 +24,10 @@ on: [push]
 Be sure to set the `GIT_PASSWORD` secret in your repo secrets settings.
 
 
-**NOTE:** by default, all branches are pushed. If you want to avoid 
+**NOTE:** by default, all branches are pushed. If you want to avoid
 this behavior, set `PUSH_ALL_REFS: "false"`
 
-You can further customize the push behavior with the `GIT_PUSH_ARGS` parameter. 
+You can further customize the push behavior with the `GIT_PUSH_ARGS` parameter.
 By default, this is set to `--tags --force --prune`
 
 If something goes wrong, you can debug by setting `DEBUG: "true"`
@@ -53,7 +53,7 @@ Pretty much the same, but using `GIT_SSH_PRIVATE_KEY` and `GIT_SSH_KNOWN_HOSTS`
 
 Be sure you set the secrets in your repo secrets settings!
 
-**NOTE:** if you prefer to skip hosts verification instead of providing a known_hosts file, 
+**NOTE:** if you prefer to skip hosts verification instead of providing a known_hosts file,
 you can do so by using the `GIT_SSH_NO_VERIFY_HOST` input option. e.g.
 
 ```yaml
