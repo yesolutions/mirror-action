@@ -1,7 +1,7 @@
 # mirror-action
 A GitHub Action for mirroring your commits to a different remote repository
 
-This project is [mirrored on GitLab](https://gitlab.com/spyoungtech/mirror-action)
+This project is [mirrored on GitLab](https://gitlab.com/yesolutions/mirror-action)
 
 ## Example workflows
 
@@ -14,7 +14,7 @@ on: [push]
   ...
       steps:
         - uses: actions/checkout@v1
-        - uses: spyoungtech/mirror-action@master
+        - uses: yesolutions/mirror-action@master
           with:
             REMOTE: 'https://gitlab.com/spyoungtech/mirror-action.git'
             GIT_USERNAME: spyoungtech
@@ -41,7 +41,7 @@ Pretty much the same, but using `GIT_SSH_PRIVATE_KEY` and `GIT_SSH_KNOWN_HOSTS`
 ```yaml
       steps:
         - uses: actions/checkout@v1
-        - uses: spyoungtech/mirror-action@master
+        - uses: yesolutions/mirror-action@master
           with:
             REMOTE: 'ssh://git@gitlab.com/spyoungtech/mirror-action.git'
             GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
@@ -59,7 +59,7 @@ you can do so by using the `GIT_SSH_NO_VERIFY_HOST` input option. e.g.
 ```yaml
       steps:
         - uses: actions/checkout@v1
-        - uses: spyoungtech/mirror-action@master
+        - uses: yesolutions/mirror-action@master
           with:
             REMOTE: git@gitlab.com/spyoungtech/mirror-action.git
             GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}

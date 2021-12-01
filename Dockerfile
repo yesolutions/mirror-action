@@ -7,8 +7,8 @@ LABEL "com.github.actions.description"="Automate mirroring of git commits to ano
 LABEL "com.github.actions.icon"="git-commit"
 LABEL "com.github.actions.color"="green"
 
-LABEL "repository"="https://github.com/spyoungtech/mirror-action"
-LABEL "homepage"="https://github.com/spyoungtech/mirror-action"
+LABEL "repository"="https://github.com/yesolutions/mirror-action"
+LABEL "homepage"="https://github.com/yesolutions/mirror-action"
 LABEL "maintainer"="Spencer Phillip Young <spencer.young@spyoung.com>"
 
 
