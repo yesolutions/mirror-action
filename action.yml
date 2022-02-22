@@ -5,6 +5,8 @@ branding:
   color: green
 
 inputs:
+  REMOTE_NAME:
+    description: "Remote name"
   REMOTE:
     description: "The remote repository e.g. https://github.com/octocat/foo.git or git@github.com:octocat/foo.git"
     required: false
