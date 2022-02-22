@@ -7,6 +7,7 @@ fi
 
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
+REMOTE_NAME=${INPUT_REMOTE_NAME}
 GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY}
 GIT_SSH_PUBLIC_KEY=${INPUT_GIT_SSH_PUBLIC_KEY}
 GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
@@ -35,7 +36,7 @@ git config --global credential.username "${GIT_USERNAME}"
 
 
 if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
-    mkdir ~/.ssh
+    mkdir -p ~/.ssh
     chmod 700 ~/.ssh
     echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
     if [[ "${GIT_SSH_PUBLIC_KEY}" != "" ]]; then
@@ -61,15 +62,17 @@ else
     git config --global credential.helper cache
 fi
 
-
-git remote add mirror "${REMOTE}"
+if [ -z "${REMOTE_NAME}" ]; then
+    REMOTE_NAME=mirror
+fi
+git remote add ${REMOTE_NAME} "${REMOTE}"
 if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
-    eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
+    eval git push ${GIT_PUSH_ARGS} ${REMOTE_NAME} "\"refs/remotes/origin/*:refs/heads/*\""
 else
     if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
         echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch" > /dev/stderr
         exit 1
     else
-        eval git push -u ${GIT_PUSH_ARGS} mirror "${GITHUB_REF}"
+        eval git push -u ${GIT_PUSH_ARGS} ${REMOTE_NAME} "${GITHUB_REF}"
     fi
 fi
