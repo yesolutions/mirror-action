@@ -1,0 +1,19 @@
+name: mirror
+on:
+  push:
+    # delete this item if you don't want to trigger this workflow when modify this repo
+    branches: group
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # UTC 17:00 -> CST (China) 1:00, see https://datetime360.com/cn/utc-cst-china-time/
+    - cron: '0 20 * * *'
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: mirror 
+        uses: KangLin/mirror-action@group
+        with:
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
+          GIT_SSH_NO_VERIFY_HOST: "true"

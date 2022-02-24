@@ -11,7 +11,7 @@ LABEL "repository"="https://github.com/yesolutions/mirror-action"
 LABEL "homepage"="https://github.com/yesolutions/mirror-action"
 LABEL "maintainer"="Spencer Phillip Young <spencer.young@spyoung.com>"
 
-
+COPY mirror.sh /mirror.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY cred-helper.sh /cred-helper.sh
 ENTRYPOINT ["/entrypoint.sh"]
