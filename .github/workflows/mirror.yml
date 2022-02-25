@@ -1,11 +1,13 @@
 on:
-  push:
+  #push:
     # delete this item if you don't want to trigger this workflow when modify this repo
-    branches: group
+    #branches: group
   schedule:
     # * is a special character in YAML so you have to quote this string
+    # https://docs.github.com/cn/actions/using-workflows/events-that-trigger-workflows
+    # You can schedule a workflow to run at specific UTC times using POSIX cron syntax: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07
     # UTC 17:00 -> CST (China) 1:00, see https://datetime360.com/cn/utc-cst-china-time/
-    - cron: '0 2 45 * *'
+    - cron: '5 * * * *'
 
 name: mirror
 jobs:
