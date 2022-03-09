@@ -7,7 +7,7 @@ fi
 
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
-REMOTE_NAME=${INPUT_REMOTE_NAME}
+REMOTE_NAME=${INPUT_REMOTE_NAME:-"mirror"}
 GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY}
 GIT_SSH_PUBLIC_KEY=${INPUT_GIT_SSH_PUBLIC_KEY}
 GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
@@ -62,9 +62,6 @@ else
     git config --global credential.helper cache
 fi
 
-if [ -z "${REMOTE_NAME}" ]; then
-    REMOTE_NAME=mirror
-fi
 git remote add ${REMOTE_NAME} "${REMOTE}"
 if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
     eval git push ${GIT_PUSH_ARGS} ${REMOTE_NAME} "\"refs/remotes/origin/*:refs/heads/*\""
