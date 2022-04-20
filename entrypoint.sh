@@ -15,6 +15,7 @@ GIT_SSH_NO_VERIFY_HOST=${INPUT_GIT_SSH_NO_VERIFY_HOST}
 GIT_SSH_KNOWN_HOSTS=${INPUT_GIT_SSH_KNOWN_HOSTS}
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
 
+git config --global --add safe.directory /github/workspace
 
 if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
