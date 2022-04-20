@@ -5,6 +5,8 @@ if [[ "${DEBUG}" -eq "true" ]]; then
     set -x
 fi
 
+git config --global --add safe.directory /github/workspace
+
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
 REMOTE_NAME=${INPUT_REMOTE_NAME:-"mirror"}
@@ -13,9 +15,7 @@ GIT_SSH_PUBLIC_KEY=${INPUT_GIT_SSH_PUBLIC_KEY}
 GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
 GIT_SSH_NO_VERIFY_HOST=${INPUT_GIT_SSH_NO_VERIFY_HOST}
 GIT_SSH_KNOWN_HOSTS=${INPUT_GIT_SSH_KNOWN_HOSTS}
-HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
-
-git config --global --add safe.directory /github/workspace
+HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
 
 if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
