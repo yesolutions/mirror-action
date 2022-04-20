@@ -13,7 +13,9 @@ For example, this project uses the following workflow to mirror from GitHub to G
 on: [push]
   ...
       steps:
-        - uses: actions/checkout@v1
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
         - uses: yesolutions/mirror-action@master
           with:
             REMOTE: 'https://gitlab.com/spyoungtech/mirror-action.git'
@@ -40,7 +42,9 @@ Pretty much the same, but using `GIT_SSH_PRIVATE_KEY` and `GIT_SSH_KNOWN_HOSTS`
 
 ```yaml
       steps:
-        - uses: actions/checkout@v1
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
         - uses: yesolutions/mirror-action@master
           with:
             REMOTE: 'ssh://git@gitlab.com/spyoungtech/mirror-action.git'
@@ -58,7 +62,9 @@ you can do so by using the `GIT_SSH_NO_VERIFY_HOST` input option. e.g.
 
 ```yaml
       steps:
-        - uses: actions/checkout@v1
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
         - uses: yesolutions/mirror-action@master
           with:
             REMOTE: git@gitlab.com/spyoungtech/mirror-action.git
