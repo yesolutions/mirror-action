@@ -5,6 +5,8 @@ if [[ "${DEBUG}" -eq "true" ]]; then
     set -x
 fi
 
+git config --global --add safe.directory /github/workspace
+
 GIT_USERNAME=${INPUT_GIT_USERNAME:-${GIT_USERNAME:-"git"}}
 REMOTE=${INPUT_REMOTE:-"$*"}
 REMOTE_NAME=${INPUT_REMOTE_NAME:-"mirror"}
@@ -15,13 +17,12 @@ GIT_SSH_NO_VERIFY_HOST=${INPUT_GIT_SSH_NO_VERIFY_HOST}
 GIT_SSH_KNOWN_HOSTS=${INPUT_GIT_SSH_KNOWN_HOSTS}
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
 
-
 if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
     echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
     echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
     echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
-    echo " - uses: actions/checkout@v1" > /dev/stderr
+    echo " - uses: actions/checkout@v3" > /dev/stderr
     if [[ "${SRC_REPO}" -eq "" ]]; then
         echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
         SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
