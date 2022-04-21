@@ -1,4 +1,4 @@
-FROM alpine/git:latest
+FROM alpine/git@sha256:1283cf559e7fa83951f25b292394dc7bac783e12e2c0353ddda8e3c51583d10f
 
 RUN apk --no-cache add bash
 
