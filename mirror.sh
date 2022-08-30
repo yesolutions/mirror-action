@@ -44,7 +44,10 @@ rep+=("RabbitIm https://github.com/KangLin/RabbitIm.git ssh://kl222@git.code.sf.
 rep+=("Calendar https://github.com/KangLin/Calendar.git ssh://kl222@git.code.sf.net/p/rabbitcalendar/code")
 rep+=("LunarCalendar https://github.com/KangLin/LunarCalendar.git ssh://kl222@git.code.sf.net/p/lunarcalendar/code")
 rep+=("chinesechesscontrol https://github.com/KangLin/ChineseChessControl.git ssh://kl222@git.code.sf.net/p/chinesechesscontrol/code")
+rep+=("chinesechesscontrol https://github.com/KangLin/ChineseChessControl.git git@gitlab.com:kl222/ChineseChessControl.git")
 rep+=("RabbitProxyServer https://github.com/KangLin/RabbitProxyServer.git ssh://kl222@git.code.sf.net/p/rabbitproxyserver/code")
+rep+=("RabbitCommon https://github.com/KangLin/RabbitCommon.git ssh://kl222@git.code.sf.net/p/rabbitcommon/code")
+rep+=("Documents https://github.com/KangLin/Documents.git git@gitlab.com:kl222/Documents.git")
 
 for i in "${rep[@]}";
 do
