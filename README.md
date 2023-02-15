@@ -29,8 +29,8 @@ Be sure to set the `GIT_PASSWORD` secret in your repo secrets settings.
 **NOTE:** by default, all branches are pushed. If you want to avoid
 this behavior, set `PUSH_ALL_REFS: "false"`. Set `GITHUB_REF` to the
 target branch if you want to use something specific. Since PRs and
-branches populate [`GITHUB_REF` differently](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context), using 
-`GITHUB_REF: ${{ github.head_ref || github.ref_name }}` would be the 
+branches populate [`GITHUB_REF` differently](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context), using
+`GITHUB_REF: ${{ github.head_ref || github.ref_name }}` would be the
 easiest way to target the right branch in and out of PRs.
 
 You can further customize the push behavior with the `GIT_PUSH_ARGS` parameter.
