@@ -38,6 +38,10 @@ inputs:
     description: "The arugments to use when pushing the repository"
     default: '--tags --force --prune'
     required: false
+  GITHUB_REF:
+    description: "The branch name to push to when not pushing all refs"
+    default: ${{ github.ref }}
+    required: false
   DEBUG:
     description: 'set to "true" to enable debug mode'
     default: "false"
