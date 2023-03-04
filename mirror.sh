@@ -8,8 +8,6 @@ function mirror {
         echo "Parameters: remote_name soruce_repository destination_repository1 destination_repository2 ..."
         return
     fi
-    
-    echo "-------------------------------------------------------------------"
 
     index=0
     
@@ -18,6 +16,7 @@ function mirror {
         index=`expr $index + 1`
         
         if [ 1 = $index ]; then
+            echo "-------------------------------------------------------------------"
             echo "Mirror $index: $des_rep"
             echo "step1: mkdir -p $des_rep"
             mkdir -p $1
@@ -33,7 +32,7 @@ function mirror {
             continue
         fi
 
-        echo "step$index: mirror`expr $index - 2` to ${des_rep}"
+        echo "step${index}: mirror`expr $index - 2` to ${des_rep}"
         echo "git remote add $1_${index} "$des_rep""
         git remote add $1_${index} "$des_rep";
         echo "eval git push ${GIT_PUSH_ARGS} $1_${index} "\"refs/remotes/origin/*:refs/heads/*\"""
