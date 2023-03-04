@@ -15,7 +15,7 @@ function mirror {
     
     for des_rep in "$@"
     do
-        index=`expr $index + 1 `
+        index=`expr $index + 1`
         
         if [ 1 = $index ]; then
             echo "Mirror $index: $des_rep"
@@ -33,7 +33,7 @@ function mirror {
             continue
         fi
 
-        echo "step`expr $index + 2 ` to ${des_rep}"
+        echo "step`expr $index - 2`: mirror to ${des_rep}"
         echo "git remote add $1_${index} "$des_rep""
         git remote add $1_${index} "$des_rep";
         echo "eval git push ${GIT_PUSH_ARGS} $1_${index} "\"refs/remotes/origin/*:refs/heads/*\"""
