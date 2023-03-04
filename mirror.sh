@@ -2,6 +2,7 @@
 set -e
 
 GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
+MIRROR_NUMBER=0
 
 function mirror {
     if [ $# -lt 3 ]; then
@@ -9,6 +10,8 @@ function mirror {
         return
     fi
 
+    MIRROR_NUMBER=`expr ${MIRROR_NUMBER} + 1`
+    
     index=0
     
     for des_rep in "$@"
@@ -17,7 +20,7 @@ function mirror {
         
         if [ 1 = $index ]; then
             echo "-------------------------------------------------------------------"
-            echo "Mirror $index: $des_rep"
+            echo "Mirror ${MIRROR_NUMBER}: $des_rep"
             echo "step1: mkdir -p $des_rep"
             mkdir -p $1
             cd $1
@@ -58,3 +61,4 @@ do
     mirror $i;
 done
 
+echo "Total repository: ${MIRROR_NUMBER}"
