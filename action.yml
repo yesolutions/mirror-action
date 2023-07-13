@@ -15,7 +15,7 @@ inputs:
     description: "Username for remote repository"
     required: false
   GIT_PASSWORD:
-    description: "The git https password or token for the remote repository"
+    description: "The git HTTPS password or token for the remote repository"
     required: false
   GIT_SSH_PRIVATE_KEY:
     description: "The ssh private key for writing to the remote repository, if using ssh"
@@ -24,18 +24,22 @@ inputs:
     description: "The ssh public key for writing to the remote repository. Normally, not required at all"
     required: false
   GIT_SSH_KNOWN_HOSTS:
-    description: "The contents of a SSH known_hosts file for host key verification"
+    description: "The contents of an SSH known_hosts file for host key verification"
     required: false
   GIT_SSH_NO_VERIFY_HOST:
-    description: "if true, skips host key verification. Mutually exclusive with GIT_SSH_KNOWN_HOSTS"
+    description: "If true, skip host key verification. Mutually exclusive with GIT_SSH_KNOWN_HOSTS"
     default: "false"
     required: false
+  GIT_REF:
+     description: "Push another ref rather than the current branch (GITHUB_REF) from which the action was triggered. Only effective when PUSH_ALL_REFS is false"
+     default: ${{ github.head_ref || github.ref_name }}
+     required: false
   PUSH_ALL_REFS:
     description: "Push all refs instead of just the current branch"
     default: "true"
     required: false
   GIT_PUSH_ARGS:
-    description: "The arugments to use when pushing the repository"
+    description: "The arguments to use when pushing the repository"
     default: '--tags --force --prune'
     required: false
   DEBUG:
