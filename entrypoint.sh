@@ -12,6 +12,7 @@ REMOTE=${INPUT_REMOTE:-"$*"}
 REMOTE_NAME=${INPUT_REMOTE_NAME:-"mirror"}
 GIT_SSH_PRIVATE_KEY=${INPUT_GIT_SSH_PRIVATE_KEY}
 GIT_SSH_PUBLIC_KEY=${INPUT_GIT_SSH_PUBLIC_KEY}
+GIT_REF=${INPUT_GIT_REF}
 GIT_PUSH_ARGS=${INPUT_GIT_PUSH_ARGS:-"--tags --force --prune"}
 GIT_SSH_NO_VERIFY_HOST=${INPUT_GIT_SSH_NO_VERIFY_HOST}
 GIT_SSH_KNOWN_HOSTS=${INPUT_GIT_SSH_KNOWN_HOSTS}
@@ -71,6 +72,6 @@ else
         echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch" > /dev/stderr
         exit 1
     else
-        eval git push -u ${GIT_PUSH_ARGS} ${REMOTE_NAME} "${GITHUB_REF}"
+        eval git push -u ${GIT_PUSH_ARGS} ${REMOTE_NAME} "${GIT_REF}"
     fi
 fi
