@@ -32,7 +32,7 @@ inputs:
     required: false
   GIT_REF:
      description: "Push another ref rather than the current branch (GITHUB_REF) from which the action was triggered. Only effective when PUSH_ALL_REFS is false"
-     default: ${{ github.head_ref || github.ref_name }}
+     default: ${{ github.ref }}
      required: false
   PUSH_ALL_REFS:
     description: "Push all refs instead of just the current branch"
