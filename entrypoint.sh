@@ -47,8 +47,9 @@ if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
     fi
     chmod 600 ~/.ssh/id_rsa
     if [[ "${GIT_SSH_KNOWN_HOSTS}" != "" ]]; then
-      echo "${GIT_SSH_KNOWN_HOSTS}" > ~/.ssh/known_hosts
-      git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes -o UserKnownHostsFile=~/.ssh/known_hosts"
+      KNOWN_HOSTS_FILE=~/.ssh/known_hosts
+      echo "${GIT_SSH_KNOWN_HOSTS}" > "${KNOWN_HOSTS_FILE}"
+      git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes -o UserKnownHostsFile=${KNOWN_HOSTS_FILE}"
     else
       if [[ "${GIT_SSH_NO_VERIFY_HOST}" != "true" ]]; then
         echo "WARNING: no known_hosts set and host verification is enabled (the default)"
